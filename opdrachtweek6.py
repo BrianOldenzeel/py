@@ -35,3 +35,4 @@ print(base_b_to_num("132", 4))
 print(base_b_to_num("101010", 2))
 
 assert base_b_to_num("101010", 2) == 42
+
