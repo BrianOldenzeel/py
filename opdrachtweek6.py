@@ -9,6 +9,7 @@ def num_to_binary(n):
 
 print(num_to_binary(18))
 
+# opdracht 1
 
 def num_to_base(n, b):
     if n == 0:
@@ -23,6 +24,8 @@ print(num_to_base(42, 5))
 
 
 assert num_to_base(42, 5) == '132'
+
+# opdracht 2
 
 def base_b_to_num(s, b):
     total = 0
