@@ -71,11 +71,33 @@ def number_stairs(n):
 
 number_stairs(5)
 
-
 def end_check(phrase):
-    """show longest substring of the start and end of the phrase"""
-    end_string = ""
-    for i in range(len(phrase)):
-        print(phrase[i], phrase[-1])
+    """
+    Bepaalt de langste substring die zowel aan het begin als aan het einde 
+    van de string 'phrase' voorkomt, zonder dat deze substrings overlappen.
 
-end_check("123test123")
+    Parameters:
+        phrase (str): De invoerstring.
+
+    Returns:
+        str: De langste substring die zowel aan het begin als het einde voorkomt,
+             zonder overlapping. Als er geen overeenkomende substring is, wordt
+             een lege string ('') teruggegeven.
+    """
+    n = len(phrase)
+    longest = ""
+
+    # Controleer alle mogelijke lengtes van de prefix/suffix
+    for i in range(1, n // 2 + 1):
+        if phrase[:i] == phrase[-i:]:
+            longest += phrase[:i]
+
+    return longest
+
+
+# Testgevallen
+assert end_check("abXYab") == "ab"       # 'ab' komt aan begin en einde voor
+assert end_check("123test123") == "123"        # 'na' is de langste match
+assert end_check("abcdef") == ""          # Geen overeenkomst
+
+print("Alle tests geslaagd!")
