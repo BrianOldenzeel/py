@@ -38,7 +38,7 @@ def num_coins(t, l):
     if skip_first > 0:
         return skip_first
 
-    # Geen enkele optie werkt
+    
     return 0
 
     
@@ -51,5 +51,13 @@ assert num_coins(0, [5, 5]) == 0
 assert num_coins(42, []) == 0
 
 
-def nijlpaard_diner(s, l):
-    return
+def nijlpaard_diner(social_distance, loc_diner):
+    if len(loc_diner) == 0:
+        return 0
+    
+    if loc_diner[0] - social_distance >= social_distance:
+        return 1 + nijlpaard_diner(social_distance, loc_diner[1:])
+
+    return nijlpaard_diner(social_distance, loc_diner[1:])
+
+print(nijlpaard_diner(1, [3,2,3] ))
