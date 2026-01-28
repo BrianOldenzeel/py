@@ -1,3 +1,4 @@
+#opdracht 1
 def check_extension(s, e):
     if e == "":
         return True
@@ -15,6 +16,7 @@ assert check_extension("tentamen.docx", ".exe") == False
 assert check_extension("program.exe", ".exe") == True
 assert check_extension("wk8ex1.py", ".py") == True
 
+#opdracht 2
 def only_even_loop(L):
     res = []
     for i in L:
@@ -47,5 +49,24 @@ L = [
     ["9731827", 3.2, False],
 ]
 
+
+# opdracht 3
 HW = [[item[0], item[1] + 0.5] for item in L if item[2] == True]
 print(HW)
+
+
+#opdracht 5
+
+def alfabet_word(w):
+    if len(w) <= 1:
+        return True
+
+    if w[0] <= w[1]:
+        return alfabet_word(w[1:])
+
+    return False
+
+
+print(alfabet_word("cba"))
+
+
