@@ -1,46 +1,42 @@
-#opdracht 1
 def check_extension(s, e):
     if e == "":
         return True
-
+    
     if s == "":
         return False
-    
-    if s[-1] != e[-1]:
-        return False 
-    
+
+    if e[-1] != s[-1]:
+        return False
+
     return check_extension(s[:-1], e[:-1])
-    
 
 assert check_extension("tentamen.docx", ".exe") == False
 assert check_extension("program.exe", ".exe") == True
 assert check_extension("wk8ex1.py", ".py") == True
 
-#opdracht 2
-def only_even_loop(L):
+def only_even_loop(l):
     res = []
-    for i in L:
-        if i % 2 == 0:
-            res.append(i)
+    for item in l:
+        if item % 2 == 0:
+            res.append(item)
     return res
 assert only_even_loop([0, 1, 2, 3, 4]) == [0, 2, 4]
 
-def only_even_lc(L):
-    res = [item for item in L if item % 2 == 0]
-    return res
+def only_even_lc(l):
+    res = [item for item in l if item % 2 == 0]
+    assert only_even_lc([0, 1, 2, 3, 4]) == [0, 2, 4]
 
-assert only_even_lc([0, 1, 2, 3, 4]) == [0, 2, 4]
+def only_even_rec(l):
+    if len(l) == 0:
+        return l
 
-def only_even_rec(L):
-    if len(L) == 0:
-        return L
-
-    if L[0] % 2 == 0:
-        return [L[0]] + only_even_rec(L[1:])
-
-    return only_even_rec(L[1:])
+    if l[0] % 2 == 0:
+        return [l[0]] + only_even_rec(l[1:])
+    
+    return only_even_rec(l[1:])
 
 assert only_even_rec([0, 1, 2, 3, 4]) == [0, 2, 4]
+
 L = [
     ["0308230", 7.6, True],
     ["8273927", 5.1, False],
@@ -48,48 +44,42 @@ L = [
     ["2368612", 5.9, True],
     ["9731827", 3.2, False],
 ]
+hw = [[item[0], item[1] + 0.5] for item in L if item[2] is True]
+print(hw)
 
-
-# opdracht 3
-HW = [[item[0], item[1] + 0.5] for item in L if item[2] == True]
-print(HW)
-
-
-#opdracht 5
-
-def alfabet_word(w):
-    if len(w) <= 1:
+def alfabet_word(s):
+    if len(s) == 1:
         return True
-
-    if w[0] <= w[1]:
-        return alfabet_word(w[1:])
+    
+    if s[0] < s[1]:
+        return alfabet_word(s[1:]) 
 
     return False
 
-
+print(alfabet_word("abc"))
 print(alfabet_word("cba"))
 
 
-# opdracht 6
 def complexity_score(text):
     score_count = 0
     words_split = text.split()
-    total_words = len(words_split)
-    sentences_split = text.split(".")[:-1]
-    total_sentences = len(sentences_split)
+    word_count = len(words_split)
+    sentence_split = text.split(".")[:-1]
+    sentence_count = len(sentence_split)
 
     for word in words_split:
         if len(word) > 10:
             score_count += 1
 
-    for sentence in sentences_split:
+    for sentence in sentence_split:
         if len(sentence.split()) > 15:
             score_count += 1
     
-    return (score_count / (total_sentences + total_words)) * 100
+    return (score_count / (word_count + sentence_count)) * 100
 
-print("Dit is een gecompliceerde zin met veel verschillende woorden erin verstopt. Deze zin is erg lang voor geen goede reden maak ik hem nog langer.".split(".")[:-1])
-print(complexity_score("Dit is een gecompliceerde zin met veel verschillende woorden erin verstopt."))
+print(complexity_score(
+            "Dit is een gecompliceerde zin met veel verschillende woorden erin verstopt."
+        ))
 
 assert round(complexity_score("Dit is een korte zin."), 1) == 0.0
 # Uitleg:
